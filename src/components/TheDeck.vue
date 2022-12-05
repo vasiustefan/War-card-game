@@ -5,6 +5,8 @@ export default {
       deckData: null,
       cardData: null,
       deckCardsData: [],
+      player1Score: 0,
+      player2Score: 0,
     };
   },
   methods: {
@@ -20,69 +22,51 @@ export default {
         });
     },
     fetchCard(deckId) {
-      const Url = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`;
+      const Url = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`;
       fetch(Url)
         .then((response) => response.json())
         .then((data) => {
-          this.cardData = data;
-          this.deckCardsData = [];
+          this.deckCardsData = data.cards;
         });
-    },
-    returnToDeck() {
-      this.cardData = null;
-      this.deckCardsData = [];
     },
   },
 };
 </script>
 
 <template>
-  <h2>Card Deck</h2>
-  <v-btn variant="outlined" rounded="pill" color="white" @click="fetchDeck"
-    >Get new Deck</v-btn
-  >
-  <div class="d-flex justify-space-between" v-if="deckData">
-    <v-btn
-      variant="outlined"
-      rounded="pill"
-      color="white"
-      v-if="cardData || deckCardsData.length > 0"
-      @click="returnToDeck"
-    >
-      Return to Deck
-    </v-btn>
-    <v-btn
-      variant="outlined"
-      rounded="pill"
-      color="white"
-      @click="fetchCard(deckData.deck_id)"
-      >Get Card Player 1</v-btn
-    >
-
-    <v-btn
-      variant="outlined"
-      rounded="pill"
-      color="white"
-      @click="fetchCard(deckData.deck_id)"
-      >Get Card Player 2</v-btn
-    >
+  <v-btn @click="fetchDeck"
+    >Get my Deck <v-icon icon="mdi-play-box-outline"></v-icon
+  ></v-btn>
+  <div v-if="deckData">
+    <v-btn variant="outlined" @click="fetchCard(deckData.deck_id)"
+      >Draw Cards<v-icon icon="mdi-account-supervisor-outline"></v-icon
+    ></v-btn>
     <div v-if="cardData">
-      <img :src="cardData.cards[0].image" />
+      <v-img
+        class="bg-white"
+        width="100"
+        :aspect-ratio="1"
+        :src="cardData.cards[0].image"
+      />
     </div>
-    <div v-if="deckCardsData.length > 0">
-      <div v-for="(card, index) in deckCardsData" :key="index">
-        <img :src="card.image" />
-      </div>
-    </div>
-    <v-btn
-      v-if="deckCardsData.length > 0"
-      @click="shuffleRemainingDeck(deckData.deck_id)"
-    >
-      Shuffle Remaining Deck
-    </v-btn>
+    <v-row v-if="deckCardsData.length > 0">
+      <v-col
+        v-for="(card, index) in deckCardsData"
+        :key="index"
+        class="d-flex child-flex"
+        cols="2"
+      >
+        <v-img
+          class="bg-grey-lighten-2"
+          cover
+          :aspect-ratio="0"
+          :src="card.image"
+        />
+      </v-col>
+    </v-row>
   </div>
 </template>
-fetch
+
 <style scoped>
 img {
   float: left;
