@@ -27,7 +27,20 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.deckCardsData = data.cards;
+          this.scoreBoard();
         });
+    },
+
+    scoreBoard() {
+      let data = this.deckCardsData;
+      console.log(data[0]);
+      console.log(data[1]);
+      if (data[0].value < data[1].value || data[1].value === "ACE") {
+        this.player2Score = ++this.player2Score;
+      } else {
+        if (data[0].value > data[1].value || data[0].value === "ACE")
+          this.player1Score = ++this.player1Score;
+      }
     },
   },
 };
@@ -38,8 +51,8 @@ export default {
     >Get my Deck <v-icon icon="mdi-play-box-outline"></v-icon
   ></v-btn>
   <div v-if="deckData">
-    <v-btn variant="outlined" @click="fetchCard(deckData.deck_id)"
-      >Draw Cards<v-icon icon="mdi-account-supervisor-outline"></v-icon
+    <v-btn variant="outlined" @click="fetchCard(deckData.deck_id)">
+      Draw Cards<v-icon icon="mdi-account-supervisor-outline"></v-icon
     ></v-btn>
     <div v-if="cardData">
       <v-img
@@ -64,6 +77,10 @@ export default {
         />
       </v-col>
     </v-row>
+    <div id="score">
+      <h2>Player 1 Score:{{ player1Score }}</h2>
+      <h2>Player 2 Score:{{ player2Score }}</h2>
+    </div>
   </div>
 </template>
 
