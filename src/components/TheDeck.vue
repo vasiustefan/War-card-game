@@ -35,35 +35,11 @@ export default {
       let data = this.deckCardsData;
       console.log(data[0]);
       console.log(data[1]);
-      if (data[0].value === "10") {
-        data[0].value = 10;
-      }
-      if (data[1].value === "10") {
-        data[1].value = 10;
-      }
-      if (
-        (data[1].value === "ACE" && data[0].value != "ACE") ||
-        data[0].value < data[1].value
-      ) {
+      if (data[0].value < data[1].value || data[1].value === "ACE") {
         this.player2Score = ++this.player2Score;
       } else {
-        if (
-          (data[0].value === "ACE" && data[1].value != "ACE") ||
-          data[0].value > data[1].value
-        )
+        if (data[0].value > data[1].value || data[0].value === "ACE")
           this.player1Score = ++this.player1Score;
-      }
-      if (this.player1Score === 5) {
-        alert("Player 1 wins!");
-        this.player1Score = 0;
-        this.player2Score = 0;
-        this.fetchDeck();
-      }
-      if (this.player2Score === 5) {
-        alert("Player 2 wins!");
-        this.player1Score = 0;
-        this.player2Score = 0;
-        this.fetchDeck();
       }
     },
   },
