@@ -11,8 +11,8 @@
     5. Daca cele doua carti au aceeasi valoare, atunci se declara egalitate.
   </p>
   <p>6. Jucatorul care castiga runda primeste un punct.</p>
-  <p>7. Jocul se termina cand unul dintre jucatori ajunge la 10 puncte.</p>
-  <p>8. Jucatorul care a ajuns la 10 puncte castiga jocul.</p>
+  <p>7. Jocul se termina cand unul dintre jucatori ajunge la 5 puncte.</p>
+  <p>8. Jucatorul care a ajuns la 5 puncte castiga jocul.</p>
 </template>
 
 <style scoped>
@@ -22,7 +22,7 @@ header {
 p,
 h1,
 h2 {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", monospace;
   color: red;
 }
 </style>
