@@ -2,8 +2,8 @@
 
 const projectName = "VasiuStefan";
 
-const execa = require("execa");
-const fs = require("fs");
+import execa from "execa";
+import { readFile, writeFile, existsSync } from "fs";
 
 // List of files, regex find & replaces to perform for Github pages
 const replaces = [
@@ -23,12 +23,12 @@ const replaces = [
   try {
     // Perform file replaces in prep for GitHub page deploy
     replaces.forEach(({ file, find, replace }) => {
-      fs.readFile(file, function (err, data) {
+      readFile(file, function (err, data) {
         if (err) throw err;
         const regex = new RegExp(find, "gm");
         data = data.toString();
         data = data.replace(regex, replace);
-        fs.writeFile(file, data, function (err) {
+        writeFile(file, data, function (err) {
           err;
         });
       });
@@ -39,7 +39,7 @@ const replaces = [
     console.log("Building started...");
     await execa("npm", ["run", "build"]);
     // Understand if it's dist or build folder
-    const folderName = fs.existsSync("dist") ? "dist" : "build";
+    const folderName = existsSync("dist") ? "dist" : "build";
     await execa("git", ["--work-tree", folderName, "add", "--all"]);
     await execa("git", ["--work-tree", folderName, "commit", "-m", "gh-pages"]);
     console.log("Pushing to gh-pages...");
@@ -50,12 +50,12 @@ const replaces = [
 
     // Revert file replaces that we did earlier
     replaces.forEach(({ file, find, replace }) => {
-      fs.readFile(file, function (err, data) {
+      readFile(file, function (err, data) {
         if (err) throw err;
         const regex = new RegExp(replace, "gm");
         data = data.toString();
         data = data.replace(regex, find);
-        fs.writeFile(file, data, function (err) {
+        writeFile(file, data, function (err) {
           err;
         });
       });
