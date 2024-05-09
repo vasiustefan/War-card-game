@@ -6,6 +6,7 @@ import vuetify from "vite-plugin-vuetify";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/War-card-game/",
   plugins: [vue(), vuetify({ autoImport: true })],
   resolve: {
     alias: {
