@@ -1,35 +1,12 @@
-# stefan
+Light mode
+![2-1](https://github.com/vasiustefan/War-card-game/assets/93321899/37849808-dac4-4673-bfd1-6d4e153c5588)
 
-This template should help get you started developing with Vue 3 in Vite.
+Dark mode
+![2-2](https://github.com/vasiustefan/War-card-game/assets/93321899/daa9aecb-cdb2-4274-9e77-9a5dc8ea0238)
 
-## Recommended IDE Setup
+Get my deck + let's play
+![2-3](https://github.com/vasiustefan/War-card-game/assets/93321899/a7198c7d-3117-416c-a1bd-512e112a173f)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Win the player with 5 cards won
+![2-4](https://github.com/vasiustefan/War-card-game/assets/93321899/6f48c111-9fe4-4558-a654-0b7623969491)
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
